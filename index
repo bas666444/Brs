@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialFace - التواصل الاجتماعي الآمن</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1877f2;
+            --secondary-color: #42b72a;
+            --bg-color: #f0f2f5;
+            --card-color: #ffffff;
+            --text-color: #050505;
+            --text-secondary: #65676b;
+            --border-color: #dddfe2;
+            --shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* شريط التنقل */
+        header {
+            background-color: var(--card-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .logo i {
+            margin-left: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-right: 20px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: var(--bg-color);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        /* قسم الهيرو */
+        .hero {
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+        
+        .biometric-options {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .biometric-option {
+            flex: 1;
+            background-color: var(--card-color);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .biometric-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .biometric-icon {
+            font-size: 60px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .biometric-option h3 {
+            margin-bottom: 10px;
+        }
+        
+        /* قسم المميزات */
+        .features {
+            padding: 80px 0;
+            background-color: var(--card-color);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--bg-color);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 50px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* تذييل الصفحة */
+        footer {
+            background-color: #1c1e21;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #b0b3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #3e4042;
+            color: #b0b3b8;
+        }
+        
+        /* نموذج التسجيل */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: var(--card-color);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            animation: modalFade 0.3s;
+        }
+        
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            font-size: 24px;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .camera-container {
+            width: 100%;
+            height: 300px;
+            background-color: #333;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .face-overlay {
+            position: absolute;
+            width: 200px;
+            height: 250px;
+            border: 3px dashed white;
+            border-radius: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .camera-feed {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        
+        .camera-placeholder {
+            color: white;
+            text-align: center;
+        }
+        
+        .camera-placeholder i {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #166fe5;
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #36a420;
+        }
+        
+        .btn-block {
+            width: 100%;
+        }
+        
+        .scanning {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(24, 119, 242, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(24, 119, 242, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(24, 119, 242, 0); }
+        }
+        
+        .progress-bar {
+            height: 5px;
+            background-color: var(--border-color);
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* صفحة التغذية الرئيسية */
+        .main-content {
+            display: flex;
+            padding: 20px 0;
+            gap: 20px;
+        }
+        
+        .sidebar {
+            flex: 0 0 250px;
+        }
+        
+        .sidebar-card {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .sidebar-menu li:last-child {
+            border-bottom: none;
+        }
+        
+        .sidebar-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .sidebar-menu i {
+            margin-left: 10px;
+            width: 30px;
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+        
+        .feed {
+            flex: 1;
+        }
+        
+        .create-post {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .post-input {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-input .avatar {
+            margin-left: 0;
+            margin-right: 15px;
+        }
+        
+        .post-input textarea {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            resize: none;
+            font-size: 16px;
+            height: 60px;
+        }
+        
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .post-action {
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+        
+        .post-action i {
+            margin-left: 8px;
+            font-size: 20px;
+        }
+        
+        .post {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .post-author .avatar {
+            margin-left: 0;
+            margin-right: 10px;
+        }
+        
+        .post-author-info h4 {
+            margin-bottom: 5px;
+        }
+        
+        .post-author-info span {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .post-content {
+            margin-bottom: 15px;
+        }
+        
+        .post-image {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .post-actions-buttons {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 10px;
+        }
+        
+        .post-action-button {
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .post-action-button:hover {
+            background-color: var(--bg-color);
+        }
+        
+        .post-action-button i {
+            margin-left: 8px;
+        }
+        
+        .right-sidebar {
+            flex: 0 0 300px;
+        }
+        
+        .contacts {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .contacts h3 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .contact {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .contact:last-child {
+            border-bottom: none;
+        }
+        
+        .contact .avatar {
+            margin-left: 0;
+            margin-right: 10px;
+        }
+        
+        /* تخصيصات للهواتف */
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar, .right-sidebar {
+                flex: 1;
+            }
+            
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin-bottom: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .biometric-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-user-friends"></i>
+                    <span>SocialFace</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#features">المميزات</a></li>
+                    <li><a href="#about">عنّا</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+                <div class="user-profile">
+                    <div class="avatar" id="user-avatar">?</div>
+                    <span id="user-name">زائر</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- قسم الرئيسية -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>وسائل التواصل الاجتماعي بدون كلمات مرور</h1>
+                <p>سجّل الدخول إلى حسابك باستخدام وجهك أو بصمة إصبعك. لا تحتاج إلى بريد إلكتروني أو رقم هاتف. أمان وسهولة في الاستخدام.</p>
+                
+                <div class="biometric-options">
+                    <div class="biometric-option" id="face-login">
+                        <div class="biometric-icon">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3>تسجيل الدخول بالوجه</h3>
+                        <p>سجّل الدخول باستخدام كاميرا الجهاز للتعرف على وجهك</p>
+                    </div>
+                    
+                    <div class="biometric-option" id="fingerprint-login">
+                        <div class="biometric-icon">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <h3>تسجيل الدخول ببصمة الإصبع</h3>
+                        <p>استخدم مستشعر بصمة الإصبع في جهازك للدخول بسهولة</p>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary btn-large" id="register-btn" style="padding: 15px 40px; font-size: 18px;">
+                    <i class="fas fa-user-plus"></i> إنشاء حساب جديد
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المميزات -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">مميزات SocialFace</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>أمن عالي</h3>
+                    <p>نستخدم تقنيات التعرف البيومتري المتقدمة لحماية بياناتك وهويتك</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>سرعة الوصول</h3>
+                    <p>ادخل إلى حسابك في ثوانٍ بدون الحاجة لتذكر كلمات مرور معقدة</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h3>خصوصية كاملة</h3>
+                    <p>لا نطلب أي معلومات شخصية مثل البريد الإلكتروني أو رقم الهاتف</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>مجتمع آمن</h3>
+                    <p>تفاعل مع أصدقائك في بيئة آمنة مع التحقق من هوية جميع المستخدمين</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- نموذج تسجيل الوجه -->
+    <div id="face-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">التسجيل بالتعرف على الوجه</h2>
+                <button class="close-modal" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="message" id="modal-message"></div>
+                
+                <div class="camera-container" id="camera-container">
+                    <div class="face-overlay"></div>
+                    <video id="camera-feed" class="camera-feed" autoplay playsinline></video>
+                    <div class="camera-placeholder" id="camera-placeholder">
+                        <i class="fas fa-camera"></i>
+                        <p>سيتم تفعيل الكاميرا عند بدء التسجيل</p>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress" id="scan-progress"></div>
+                </div>
+                
+                <p id="instruction-text" style="text-align: center; margin-bottom: 20px;">
+                    انقر على "بدء المسح" لإنشاء حساب جديد باستخدام وجهك
+                </p>
+                
+                <button class="btn btn-primary btn-block" id="start-scan">
+                    <i class="fas fa-play-circle"></i> بدء المسح
+                </button>
+                
+                <button class="btn btn-secondary btn-block" id="login-scan" style="margin-top: 10px; display: none;">
+                    <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- التذييل -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SocialFace</h3>
+                    <p>وسائل التواصل الاجتماعي للجيل القادم. أمان، سرعة، وخصوصية.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#features">المميزات</a></li>
+                        <li><a href="#about">عنّا</a></li>
+                        <li><a href="#privacy">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>التواصل</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:info@socialface.com">info@socialface.com</a></li>
+                        <li><a href="#">الدعم الفني</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 SocialFace. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- صفحة التغذية الرئيسية (مخفية في البداية) -->
+    <div id="main-feed" class="main-content container" style="display: none;">
+        <div class="sidebar">
+            <div class="sidebar-card">
+                <ul class="sidebar-menu">
+                    <li><a href="#"><i class="fas fa-user"></i>صفحتي</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i>الأصدقاء</a></li>
+                    <li><a href="#"><i class="fas fa-newspaper"></i>أخبار</a></li>
+                    <li><a href="#"><i class="fas fa-video"></i>فيديو</a></li>
+                    <li><a href="#"><i class="fas fa-store"></i>المتجر</a></li>
+                    <li><a href="#"><i class="fas fa-calendar"></i>الأحداث</a></li>
+                    <li><a href="#"><i class="fas fa-bookmark"></i>المحفوظات</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-card">
+                <h3 style="margin-bottom: 15px;">مجموعاتك</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="#"><i class="fas fa-users"></i>مطوري الويب</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i>محبي التكنولوجيا</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i>متطوعي الخير</a></li>
+                    <li><a href="#"><i class="fas fa-plus-circle"></i>إنشاء مجموعة جديدة</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="feed">
+            <div class="create-post">
+                <div class="post-input">
+                    <div class="avatar" id="post-user-avatar">?</div>
+                    <textarea id="post-text" placeholder="ما الذي يدور في ذهنك؟"></textarea>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <i class="fas fa-video" style="color: #f02849;"></i>
+                        <span>فيديو مباشر</span>
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-image" style="color: #45bd62;"></i>
+                        <span>صورة</span>
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-smile" style="color: #f7b928;"></i>
+                        <span>شعور/نشاط</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post">
+                <div class="post-header">
+                    <div class="post-author">
+                        <div class="avatar" style="background-color: #45bd62;">م</div>
+                        <div class="post-author-info">
+                            <h4>محمد أحمد</h4>
+                            <span>منذ ساعة واحدة • <i class="fas fa-globe-asia"></i></span>
+                        </div>
+                    </div>
+                    <i class="fas fa-ellipsis-h" style="color: var(--text-secondary); cursor: pointer;"></i>
+                </div>
+                
+                <div class="post-content">
+                    <p>التكنولوجيا الحيوية تفتح آفاقًا جديدة في عالم الأمن الرقمي. أنا سعيد جدًا بأن أرى تطبيقات مثل SocialFace تستخدم هذه التقنيات لحماية خصوصية المستخدمين.</p>
+                </div>
+                
+                <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="تكنولوجيا" class="post-image">
+                
+                <div class="post-stats">
+                    <span><i class="fas fa-thumbs-up"></i> 245 إعجاب</span>
+                    <span>84 تعليق</span>
+                </div>
+                
+                <div class="post-actions-buttons">
+                    <div class="post-action-button">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>إعجاب</span>
+                    </div>
+                    <div class="post-action-button">
+                        <i class="fas fa-comment"></i>
+                        <span>تعليق</span>
+                    </div>
+                    <div class="post-action-button">
+                        <i class="fas fa-share"></i>
+                        <span>مشاركة</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post">
+                <div class="post-header">
+                    <div class="post-author">
+                        <div class="avatar" style="background-color: #1877f2;">س</div>
+                        <div class="post-author-info">
+                            <h4>سارة خالد</h4>
+                            <span>منذ 3 ساعات • <i class="fas fa-globe-asia"></i></span>
+                        </div>
+                    </div>
+                    <i class="fas fa-ellipsis-h" style="color: var(--text-secondary); cursor: pointer;"></i>
+                </div>
+                
+                <div class="post-content">
+                    <p>جربت اليوم نظام التسجيل بالوجه في SocialFace وكانت تجربة رائعة! لم أتخيل أن أستطيع إنشاء حساب ودخول منصة تواصل اجتماعي بدون الحاجة لكتابة أي بيانات شخصية.</p>
+                </div>
+                
+                <div class="post-stats">
+                    <span><i class="fas fa-thumbs-up"></i> 189 إعجاب</span>
+                    <span>63 تعليق</span>
+                </div>
+                
+                <div class="post-actions-buttons">
+                    <div class="post-action-button">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>إعجاب</span>
+                    </div>
+                    <div class="post-action-button">
+                        <i class="fas fa-comment"></i>
+                        <span>تعليق</span>
+                    </div>
+                    <div class="post-action-button">
+                        <i class="fas fa-share"></i>
+                        <span>مشاركة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-sidebar">
+            <div class="contacts">
+                <h3>جهات الاتصال</h3>
+                <div class="contact">
+                    <div class="avatar" style="background-color: #f7b928;">ع</div>
+                    <div>
+                        <h4>علي محمد</h4>
+                        <span>نشط الآن</span>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="avatar" style="background-color: #f02849;">ل</div>
+                    <div>
+                        <h4>لينا سعد</h4>
+                        <span>نشط منذ 5 دقائق</span>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="avatar" style="background-color: #45bd62;">ي</div>
+                    <div>
+                        <h4>يوسف كامل</h4>
+                        <span>نشط منذ ساعة</span>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="avatar" style="background-color: #8a3ab9;">ن</div>
+                    <div>
+                        <h4>نور حسن</h4>
+                        <span>غير متصل</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // عناصر DOM الرئيسية
+        const faceLoginBtn = document.getElementById('face-login');
+        const fingerprintLoginBtn = document.getElementById('fingerprint-login');
+        const registerBtn = document.getElementById('register-btn');
+        const faceModal = document.getElementById('face-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const startScanBtn = document.getElementById('start-scan');
+        const loginScanBtn = document.getElementById('login-scan');
+        const cameraContainer = document.getElementById('camera-container');
+        const cameraFeed = document.getElementById('camera-feed');
+        const cameraPlaceholder = document.getElementById('camera-placeholder');
+        const scanProgress = document.getElementById('scan-progress');
+        const instructionText = document.getElementById('instruction-text');
+        const modalMessage = document.getElementById('modal-message');
+        const modalTitle = document.getElementById('modal-title');
+        const mainFeed = document.getElementById('main-feed');
+        const userAvatar = document.getElementById('user-avatar');
+        const userName = document.getElementById('user-name');
+        const postUserAvatar = document.getElementById('post-user-avatar');
+        
+        // حالة التطبيق
+        let isRegistering = true;
+        let scanInterval;
+        let currentUser = null;
+        
+        // فتح نموذج تسجيل الوجه
+        faceLoginBtn.addEventListener('click', () => {
+            isRegistering = false;
+            modalTitle.textContent = "تسجيل الدخول بالوجه";
+            instructionText.textContent = "انقر على 'تسجيل الدخول' للدخول إلى حسابك باستخدام وجهك";
+            startScanBtn.style.display = "none";
+            loginScanBtn.style.display = "block";
+            openFaceModal();
+        });
+        
+        fingerprintLoginBtn.addEventListener('click', () => {
+            showMessage("نظام بصمة الإصبع غير متاح في هذا المتصفح. يرجى استخدام نظام التعرف على الوجه.", "error");
+        });
+        
+        registerBtn.addEventListener('click', () => {
+            isRegistering = true;
+            modalTitle.textContent = "التسجيل بالتعرف على الوجه";
+            instructionText.textContent = "انقر على 'بدء المسح' لإنشاء حساب جديد باستخدام وجهك";
+            startScanBtn.style.display = "block";
+            loginScanBtn.style.display = "none";
+            openFaceModal();
+        });
+        
+        // فتح النموذج
+        function openFaceModal() {
+            faceModal.style.display = "flex";
+            resetScanner();
+        }
+        
+        // إغلاق النموذج
+        closeModalBtn.addEventListener('click', closeModal);
+        
+        function closeModal() {
+            faceModal.style.display = "none";
+            stopCamera();
+            resetScanner();
+        }
+        
+        // إغلاق النموذج بالنقر خارج المحتوى
+        window.addEventListener('click', (event) => {
+            if (event.target === faceModal) {
+                closeModal();
+            }
+        });
+        
+        // بدء المسح
+        startScanBtn.addEventListener('click', startFaceRegistration);
+        loginScanBtn.addEventListener('click', startFaceLogin);
+        
+        // بدء تسجيل الوجه
+        function startFaceRegistration() {
+            startCamera();
+            startScanBtn.disabled = true;
+            startScanBtn.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> جاري المسح...';
+            
+            // محاكاة عملية المسح
+            let progress = 0;
+            scanInterval = setInterval(() => {
+                progress += 10;
+                scanProgress.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(scanInterval);
+                    simulateFaceRegistration();
+                }
+            }, 300);
+        }
+        
+        // بدء تسجيل الدخول بالوجه
+        function startFaceLogin() {
+            startCamera();
+            loginScanBtn.disabled = true;
+            loginScanBtn.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> جاري التعرف...';
+            
+            // محاكاة عملية التعرف
+            let progress = 0;
+            scanInterval = setInterval(() => {
+                progress += 20;
+                scanProgress.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(scanInterval);
+                    simulateFaceLogin();
+                }
+            }, 300);
+        }
+        
+        // تشغيل الكاميرا
+        function startCamera() {
+            cameraPlaceholder.style.display = "none";
+            cameraFeed.style.display = "block";
+            cameraContainer.classList.add("scanning");
+            
+            // محاكاة تشغيل الكاميرا (في تطبيق حقيقي، سنستخدم getUserMedia API)
+            cameraFeed.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80";
+        }
+        
+        // إيقاف الكاميرا
+        function stopCamera() {
+            cameraPlaceholder.style.display = "block";
+            cameraFeed.style.display = "none";
+            cameraContainer.classList.remove("scanning");
+            cameraFeed.src = "";
+        }
+        
+        // إعادة تعيين الماسح
+        function resetScanner() {
+            clearInterval(scanInterval);
+            scanProgress.style.width = "0%";
+            startScanBtn.disabled = false;
+            startScanBtn.innerHTML = '<i class="fas fa-play-circle"></i> بدء المسح';
+            loginScanBtn.disabled = false;
+            loginScanBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> تسجيل الدخول';
+            modalMessage.style.display = "none";
+        }
+        
+        // محاكاة تسجيل وجه جديد
+        function simulateFaceRegistration() {
+            setTimeout(() => {
+                // إنشاء اسم مستخدم عشوائي
+                const arabicNames = ["أحمد", "محمد", "سارة", "فاطمة", "علي", "خالد", "نور", "يوسف", "مريم", "حسن"];
+                const randomName = arabicNames[Math.floor(Math.random() * arabicNames.length)];
+                const randomId = Math.floor(1000 + Math.random() * 9000);
+                const username = `${randomName}${randomId}`;
+                
+                // حفظ بيانات المستخدم في localStorage (في التطبيق الحقيقي، سيتم إرسالها للخادم)
+                const userData = {
+                    id: Date.now(),
+                    username: username,
+                    registered: true,
+                    faceId: `face_${Date.now()}`
+                };
+                
+                localStorage.setItem('socialFaceUser', JSON.stringify(userData));
+                currentUser = userData;
+                
+                showMessage(`تم إنشاء حسابك بنجاح! اسم المستخدم: ${username}`, "success");
+                
+                setTimeout(() => {
+                    closeModal();
+                    loginUser(userData);
+                }, 2000);
+            }, 500);
+        }
+        
+        // محاكاة تسجيل الدخول بالوجه
+        function simulateFaceLogin() {
+            setTimeout(() => {
+                // التحقق مما إذا كان هناك حساب مسجل
+                const savedUser = localStorage.getItem('socialFaceUser');
+                
+                if (savedUser) {
+                    const userData = JSON.parse(savedUser);
+                    currentUser = userData;
+                    
+                    showMessage(`مرحباً بعودتك ${userData.username}!`, "success");
+                    
+                    setTimeout(() => {
+                        closeModal();
+                        loginUser(userData);
+                    }, 2000);
+                } else {
+                    showMessage("لم يتم العثور على حساب. يرجى إنشاء حساب جديد أولاً.", "error");
+                    setTimeout(() => {
+                        resetScanner();
+                        stopCamera();
+                    }, 2000);
+                }
+            }, 500);
+        }
+        
+        // عرض رسالة في النموذج
+        function showMessage(text, type) {
+            modalMessage.textContent = text;
+            modalMessage.className = `message ${type}`;
+            modalMessage.style.display = "block";
+        }
+        
+        // تسجيل دخول المستخدم
+        function loginUser(userData) {
+            // إخفاء واجهة الزوار وإظهار واجهة المستخدم
+            document.querySelector('header').style.display = "block";
+            document.getElementById('home').style.display = "none";
+            document.getElementById('features').style.display = "none";
+            document.querySelector('footer').style.display = "none";
+            mainFeed.style.display = "flex";
+            
+            // تحديث معلومات المستخدم
+            userAvatar.textContent = userData.username.charAt(0);
+            userName.textContent = userData.username;
+            postUserAvatar.textContent = userData.username.charAt(0);
+            
+            // تغيير زر التسجيل ليكون زر الخروج
+            registerBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> تسجيل الخروج';
+            registerBtn.onclick = logoutUser;
+        }
+        
+        // تسجيل خروج المستخدم
+        function logoutUser() {
+            currentUser = null;
+            
+            // إظهار واجهة الزوار وإخفاء واجهة المستخدم
+            document.querySelector('header').style.display = "block";
+            document.getElementById('home').style.display = "block";
+            document.getElementById('features').style.display = "block";
+            document.querySelector('footer').style.display = "block";
+            mainFeed.style.display = "none";
+            
+            // إعادة تعيين معلومات المستخدم
+            userAvatar.textContent = "?";
+            userName.textContent = "زائر";
+            
+            // إعادة زر التسجيل
+            registerBtn.innerHTML = '<i class="fas fa-user-plus"></i> إنشاء حساب جديد';
+            registerBtn.onclick = () => {
+                isRegistering = true;
+                modalTitle.textContent = "التسجيل بالتعرف على الوجه";
+                instructionText.textContent = "انقر على 'بدء المسح' لإنشاء حساب جديد باستخدام وجهك";
+                startScanBtn.style.display = "block";
+                loginScanBtn.style.display = "none";
+                openFaceModal();
+            };
+            
+            showMessage("تم تسجيل الخروج بنجاح!", "success");
+        }
+        
+        // تحميل حالة المستخدم إذا كان مسجلاً مسبقاً
+        window.addEventListener('load', () => {
+            const savedUser = localStorage.getItem('socialFaceUser');
+            
+            if (savedUser) {
+                const userData = JSON.parse(savedUser);
+                loginUser(userData);
+            }
+        });
+        
+        // محاكاة نشر منشور جديد
+        document.getElementById('post-text').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                const postContent = this.value.trim();
+                
+                if (postContent && currentUser) {
+                    // إنشاء منشور جديد (في تطبيق حقيقي، سيتم إرساله للخادم)
+                    const postsContainer = document.querySelector('.feed');
+                    const firstPost = document.querySelector('.post');
+                    
+                    const newPost = firstPost.cloneNode(true);
+                    newPost.querySelector('.post-author h4').textContent = currentUser.username;
+                    newPost.querySelector('.post-author .avatar').textContent = currentUser.username.charAt(0);
+                    newPost.querySelector('.post-content p').textContent = postContent;
+                    newPost.querySelector('.post-image').style.display = "none";
+                    newPost.querySelector('.post-stats span:first-child').innerHTML = '<i class="fas fa-thumbs-up"></i> 0 إعجاب';
+                    newPost.querySelector('.post-stats span:last-child').textContent = "0 تعليق";
+                    
+                    postsContainer.insertBefore(newPost, postsContainer.children[1]);
+                    this.value = "";
+                    
+                    showMessage("تم نشر منشورك بنجاح!", "success");
+                }
+            }
+        });
+        
+        // محاكاة نظام الإعجابات والتعليقات
+        document.addEventListener('click', function(e) {
+            // التعامل مع زر الإعجاب
+            if (e.target.closest('.post-action-button') && e.target.closest('.post-action-button').querySelector('.fa-thumbs-up')) {
+                const likeBtn = e.target.closest('.post-action-button');
+                const likeIcon = likeBtn.querySelector('.fa-thumbs-up');
+                const likeText = likeBtn.querySelector('span');
+                
+                if (likeIcon.classList.contains('fas')) {
+                    likeIcon.classList.remove('fas');
+                    likeIcon.classList.add('far');
+                    likeText.textContent = 'إعجاب';
+                } else {
+                    likeIcon.classList.remove('far');
+                    likeIcon.classList.add('fas');
+                    likeText.textContent = 'معجَب';
+                }
+            }
+            
+            // التعامل مع مشاركة المنشور
+            if (e.target.closest('.post-action-button') && e.target.closest('.post-action-button').querySelector('.fa-share')) {
+                showMessage("تمت مشاركة المنشور بنجاح!", "success");
+            }
+        });
+    </script>
+</body>
+</html>
